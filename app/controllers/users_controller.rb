@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  # 課題のため
- before_action :set_user, only: [:show, :edit, :update, :destroy]
-  #課題のため　ここまで
+ #before_action :set_user, only: [:show, :edit, :update, :destroy]
+ 
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts
@@ -21,12 +20,13 @@ class UsersController < ApplicationController
     end
   end
   
-  #ここから課題のための追記
+
   def edit
-    
+    @user = User.find(params[:id])
   end
   
   def update
+    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path
     else
@@ -34,19 +34,30 @@ class UsersController < ApplicationController
     end
   end
   
+ 
   
-  #ここまで課題のための追記
+  #ここから課題２
+  def followings
+     @user = User.find(params[:id])
+     @followings = @user.following_users
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.follower_users
+  end
+  #ここまで課題２
   
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :region, :password, :password_confirmation)
   end
   
   #課題のため　ここから
-  def set_user
-   @user = User.find(params[:id])
-  end
+  #def set_user
+   #@user = User.find(params[:id])
+  #end
   #課題のため　ここまで
   
 end

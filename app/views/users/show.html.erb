@@ -4,6 +4,14 @@
             <h1>
                 <%= gravatar_for @user %>
                 <%= @user.name %>
+                
+                <%# 自分で追加（課題２) %>
+                </br>
+                <%= link_to "Followings", followings_user_path %>
+                </br>
+                <%= link_to "Followers", followers_user_path %>
+                <%# ここまで課題２ %>
+                
             </h1>
             <%# 自分で追加 %>
             <h2>
